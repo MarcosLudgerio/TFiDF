@@ -24,23 +24,6 @@ public class TFiDFThreadedVirtual implements Runnable {
         return document;
     }
 
-    public Map<AtomicLong, String> getListOfLinesVirtualThread(String filePath) throws IOException {
-        System.out.println("Tentando ler arqiuvo");
-        AtomicReference<Map<AtomicLong, String>> document = new AtomicReference<>(new HashMap<>());
-
-        Thread.startVirtualThread(() -> {
-            try {
-                lock.lock();
-                document.set(FileProperties.readDocumentsAtomic(filePath));
-            } catch (IOException e) {
-                System.out.println("erro ao ler documento: " + e.getMessage());
-            } finally {
-                lock.unlock();
-            }
-        });
-        System.out.println("Thread Virtual para leitura de arquivo fechada");
-        return document.get();
-    }
 
     @Override
     public void run() {
