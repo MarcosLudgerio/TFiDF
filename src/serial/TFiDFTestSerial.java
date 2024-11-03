@@ -12,7 +12,6 @@ public class TFiDFTestSerial {
     private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\dataset_1mb.txt";
 
     public static void main(String[] args) {
-
         try {
             Map<Integer, String> listOfLines = FileProperties.readDocuments(filePath);
             List<Map<String, Integer>> countTerm = TFiDF.calculateTermFrequency(listOfLines.values().stream().toList());

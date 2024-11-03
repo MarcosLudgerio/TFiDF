@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class TFiDFExecutorTest {
 
-    private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\dataset_500mb.txt";
+    private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\dataset_100mb.txt";
 
     public static void main(String[] args) {
 
@@ -19,7 +19,7 @@ public class TFiDFExecutorTest {
             TFiDFThreadedPlatform platform = new TFiDFThreadedPlatform(documents);
             executorService.submit(platform::calculateDFAndIDF);
             executorService.submit(platform::showingResults);
-            executorService.shutdownNow();
+
         } catch (IOException e) {
             System.out.println("pode dar merda: " + e.getMessage());
         }
