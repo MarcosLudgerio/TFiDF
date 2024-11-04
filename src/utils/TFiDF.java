@@ -31,15 +31,22 @@ public class TFiDF {
         List<Map<String, AtomicLong>> termFrequencyList = new ArrayList<>();
         for (String doc : documents) {
             Map<String, AtomicLong> termFrequency = new HashMap<>();
-            String[] words = doc.split("\\s+");
-            for (String word : words) {
-                AtomicLong atomicLong = new AtomicLong();
-                atomicLong.addAndGet(1);
-                termFrequency.put(word, termFrequency.getOrDefault(word, atomicLong));
+            if (doc != null) {
+                String[] words = doc.split("\\s+");
+                for (String word : words) {
+                    AtomicLong atomicLong = new AtomicLong();
+                    atomicLong.addAndGet(1);
+                    termFrequency.put(word, termFrequency.getOrDefault(word, atomicLong));
+                }
             }
             termFrequencyList.add(termFrequency);
         }
         return termFrequencyList;
+    }
+
+    public static List<Map<String, AtomicLong>> calculateTermFrequencyAtomicLong(String[] documents) {
+        List<String> documentsList = Arrays.asList(documents);
+        return calculateTermFrequencyAtomicLong(documentsList);
     }
 
     public static Map<String, Double> calculateIDF(List<Map<String, Integer>> termFrequencyList, int numDocuments) {
