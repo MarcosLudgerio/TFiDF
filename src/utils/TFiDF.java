@@ -1,14 +1,13 @@
 package utils;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 public class TFiDF {
     public static List<Map<String, Integer>> calculateTermFrequency(List<String> documents) {
+        System.out.println("iniciando a conta de TermFrequency");
         List<Map<String, Integer>> termFrequencyList = new ArrayList<>();
-
         for (String doc : documents) {
             Map<String, Integer> termFrequency = new HashMap<>();
             String[] words = doc.split("\\s+");
@@ -18,7 +17,14 @@ public class TFiDF {
             }
             termFrequencyList.add(termFrequency);
         }
+        System.out.println("Finalizando a conta de TermFrequency");
         return termFrequencyList;
+    }
+
+    public static List<Map<String, Integer>> calculateTermFrequency(String[] documents) {
+        List<String> documentsList = Arrays.asList(documents);
+        System.out.println("Devolvendo para arraylist: " + documentsList.size());
+        return calculateTermFrequency(documentsList);
     }
 
     public static List<Map<String, AtomicLong>> calculateTermFrequencyAtomicLong(List<String> documents) {
@@ -54,6 +60,7 @@ public class TFiDF {
         }
         return idfValues;
     }
+
     public static Map<String, Double> calculateIDFAtomic(List<Map<String, AtomicLong>> termFrequencyList, int numDocuments) {
         Map<String, Double> idfValues = new HashMap<>();
         Set<String> allTerms = termFrequencyList.stream()

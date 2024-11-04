@@ -24,7 +24,9 @@ public class FileProperties {
     private static int countDoc = 0;
     private static final AtomicLong counter = new AtomicLong(0);
     private static Map<AtomicLong, String> document = new HashMap<>();
+
     public static Map<Integer, String> readDocuments(String filePath) throws IOException {
+        System.out.println("começou a leitura");
         Map<Integer, String> document = new HashMap<>();
         var reader = Files.newBufferedReader(Path.of(filePath));
         String line;
@@ -36,6 +38,7 @@ public class FileProperties {
             }
         }
         reader.close();
+        System.out.println("finalizou a leitura");
         return document;
     }
 
