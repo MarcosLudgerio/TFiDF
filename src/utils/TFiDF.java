@@ -1,12 +1,18 @@
 package utils;
 
+import forkandjoin.TermFrequencyTask;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class TFiDF {
+    public static final Logger LOGGER = Logger.getLogger(TermFrequencyTask.class.getName());
+
     public static List<Map<String, Integer>> calculateTermFrequency(List<String> documents) {
         List<Map<String, Integer>> termFrequencyList = new ArrayList<>();
+
         for (String doc : documents) {
             if (doc != null) {
                 Map<String, Integer> termFrequency = new HashMap<>();

@@ -5,28 +5,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Logger;
 
 public class FileProperties {
-          /*
-        O que eu tenho do documento?
-            O tamanho dele em GB
-            A quantidade de linhas
-            A quantidade de palavras em cada linha
-            O caminho path do arquivo
-            A extenção .txt
-
-          1. Processar todo o arquivo, linha a linha;
-          2. Armazenar os dados em uma lista para cada linha
-          3.
-
-     */
-
     private static int countDoc = 0;
     private static final AtomicLong counter = new AtomicLong(0);
     private static Map<AtomicLong, String> document = new HashMap<>();
+    public static final Logger LOGGER = Logger.getLogger(FileProperties.class.getName());
 
     public static Map<Integer, String> readDocuments(String filePath) throws IOException {
-        System.out.println("começou a leitura");
+        LOGGER.info("Reading documents from " + filePath);
         Map<Integer, String> document = new HashMap<>();
         var reader = Files.newBufferedReader(Path.of(filePath));
         String line;
@@ -38,7 +26,7 @@ public class FileProperties {
             }
         }
         reader.close();
-        System.out.println("finalizou a leitura");
+        LOGGER.info("Reading finished");
         return document;
     }
 

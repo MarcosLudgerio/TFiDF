@@ -5,9 +5,11 @@ import utils.TFiDF;
 import java.util.*;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
+import java.util.logging.Logger;
 
 public class TermFrequencyTask extends RecursiveTask<List<Map<String, Integer>>> {
     private static final int THRESHOLD = 10; // Limite para divisão de tarefas
+
     private static String[] documents;
     private int start;
     private int end;
@@ -22,7 +24,6 @@ public class TermFrequencyTask extends RecursiveTask<List<Map<String, Integer>>>
     protected List<Map<String, Integer>> compute() {
         int mid = documents.length / 2;
         if (end - start <= THRESHOLD) {
-            System.out.println(Arrays.toString(documents));
             return TFiDF.calculateTermFrequency(Arrays.stream(documents).toList());
         }
         String[] leftHalf = Arrays.copyOfRange(documents, start, mid);
@@ -41,6 +42,7 @@ public class TermFrequencyTask extends RecursiveTask<List<Map<String, Integer>>>
         List<Map<String, Integer>> allResult = new ArrayList<>();
         allResult.addAll(leftResult);
         allResult.addAll(rightResult);
+
         return allResult;
     }
 }
