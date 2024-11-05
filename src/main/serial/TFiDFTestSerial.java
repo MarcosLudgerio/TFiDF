@@ -1,12 +1,12 @@
-package serial;
+package main.serial;
 
-import utils.FileProperties;
+import main.utils.FileProperties;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import utils.TFiDF;
+import main.utils.TFiDF;
 
 public class TFiDFTestSerial {
     private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\shrek-historia.txt";

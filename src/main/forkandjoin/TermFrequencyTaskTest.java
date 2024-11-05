@@ -1,6 +1,6 @@
-package forkandjoin;
+package main.forkandjoin;
 
-import utils.FileProperties;
+import main.utils.FileProperties;
 
 import java.io.IOException;
 import java.util.List;

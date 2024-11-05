@@ -1,7 +1,7 @@
-package executor;
+package main.executor;
 
-import threaded.platform.TFiDFThreadedPlatform;
-import utils.FileProperties;
+import main.threaded.platform.TFiDFThreadedPlatform;
+import main.utils.FileProperties;
 
 import java.io.IOException;
 import java.util.Map;

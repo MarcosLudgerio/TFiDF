@@ -1,6 +1,6 @@
-package threaded.platform;
+package main.threaded.platform;
 
-import utils.TFiDF;
+import main.utils.TFiDF;
 
 import java.util.ArrayList;
 import java.util.HashMap;

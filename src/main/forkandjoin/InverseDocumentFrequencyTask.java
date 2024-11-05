@@ -1,6 +1,6 @@
-package forkandjoin;
+package main.forkandjoin;
 
-import utils.TFiDF;
+import main.utils.TFiDF;
 
 import java.util.List;
 import java.util.Map;

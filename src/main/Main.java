@@ -1,4 +1,6 @@
-import utils.InvokeTasksTest;
+package main;
+
+import main.utils.InvokeTasksTest;
 
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;

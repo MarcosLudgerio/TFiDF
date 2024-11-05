@@ -1,6 +1,6 @@
-package utils;
+package main.utils;
 
-import forkandjoin.TermFrequencyTask;
+import main.forkandjoin.TermFrequencyTask;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;

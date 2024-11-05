@@ -1,7 +1,7 @@
-package threaded;
+package main.threaded;
 
-import threaded.platform.TFiDFThreadedPlatform;
-import threaded.virtual.TFiDFThreadedVirtual;
+import main.threaded.platform.TFiDFThreadedPlatform;
+import main.threaded.virtual.TFiDFThreadedVirtual;
 
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;

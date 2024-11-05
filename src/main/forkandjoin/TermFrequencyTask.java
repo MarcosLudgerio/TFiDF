@@ -1,11 +1,10 @@
-package forkandjoin;
+package main.forkandjoin;
 
-import utils.TFiDF;
+import main.utils.TFiDF;
 
 import java.util.*;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
-import java.util.logging.Logger;
 
 public class TermFrequencyTask extends RecursiveTask<List<Map<String, Integer>>> {
     private static final int THRESHOLD = 10; // Limite para divisão de tarefas

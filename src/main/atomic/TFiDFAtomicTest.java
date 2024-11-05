@@ -1,7 +1,7 @@
-package atomic;
+package main.atomic;
 
-import utils.FileProperties;
-import utils.TFiDF;
+import main.utils.FileProperties;
+import main.utils.TFiDF;
 
 import java.io.IOException;
 import java.util.List;

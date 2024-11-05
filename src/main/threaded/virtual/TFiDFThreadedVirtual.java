@@ -1,6 +1,6 @@
-package threaded.virtual;
+package main.threaded.virtual;
 
-import utils.FileProperties;
+import main.utils.FileProperties;
 
 import java.io.IOException;
 import java.util.HashMap;
