@@ -2,14 +2,11 @@ package forkandjoin;
 
 import utils.TFiDF;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
-import java.util.concurrent.atomic.AtomicLong;
 
-public class TermFrequencyTask extends RecursiveTask<List<Map<String, AtomicLong>>> {
+public class TermFrequencyTask extends RecursiveTask<List<Map<String, Integer>>> {
     private static final int THRESHOLD = 10; // Limite para divisão de tarefas
     private static String[] documents;
     private int start;
@@ -22,25 +19,28 @@ public class TermFrequencyTask extends RecursiveTask<List<Map<String, AtomicLong
     }
 
     @Override
-    protected List<Map<String, AtomicLong>> compute() {
+    protected List<Map<String, Integer>> compute() {
         int mid = documents.length / 2;
-        if (end - start <= 10) {
+        if (end - start <= THRESHOLD) {
             System.out.println(Arrays.toString(documents));
-            return TFiDF.calculateTermFrequencyAtomicLong(Arrays.stream(documents).toList());
+            return TFiDF.calculateTermFrequency(Arrays.stream(documents).toList());
         }
         String[] leftHalf = Arrays.copyOfRange(documents, start, mid);
         String[] rightHalf = Arrays.copyOfRange(documents, mid + 1, end);
-        ForkJoinTask<List<Map<String, AtomicLong>>> taskLeft = new TermFrequencyTask(leftHalf, start, mid);
+        return getAllResult(leftHalf, mid, rightHalf);
+    }
 
-        ForkJoinTask<List<Map<String, AtomicLong>>> taskRight = new TermFrequencyTask(rightHalf, mid + 1, documents.length - 1);
+    private List<Map<String, Integer>> getAllResult(String[] leftHalf, int mid, String[] rightHalf) {
+        ForkJoinTask<List<Map<String, Integer>>> taskLeft = new TermFrequencyTask(leftHalf, start, mid);
+
+        ForkJoinTask<List<Map<String, Integer>>> taskRight = new TermFrequencyTask(rightHalf, mid + 1, documents.length - 1);
         taskLeft.fork();
         taskRight.fork();
-        List<Map<String, AtomicLong>> leftResult = taskLeft.join();
-        List<Map<String, AtomicLong>> rightResult = taskRight.join();
-        List<Map<String, AtomicLong>> allResult = new ArrayList<>();
+        List<Map<String, Integer>> leftResult = taskLeft.join();
+        List<Map<String, Integer>> rightResult = taskRight.join();
+        List<Map<String, Integer>> allResult = new ArrayList<>();
         allResult.addAll(leftResult);
         allResult.addAll(rightResult);
-
         return allResult;
     }
 }

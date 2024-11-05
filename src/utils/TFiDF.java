@@ -6,25 +6,19 @@ import java.util.stream.Collectors;
 
 public class TFiDF {
     public static List<Map<String, Integer>> calculateTermFrequency(List<String> documents) {
-        System.out.println("iniciando a conta de TermFrequency");
         List<Map<String, Integer>> termFrequencyList = new ArrayList<>();
         for (String doc : documents) {
-            Map<String, Integer> termFrequency = new HashMap<>();
-            String[] words = doc.split("\\s+");
+            if (doc != null) {
+                Map<String, Integer> termFrequency = new HashMap<>();
+                String[] words = doc.split("\\s+");
 
-            for (String word : words) {
-                termFrequency.put(word.toLowerCase(), termFrequency.getOrDefault(word, 0) + 1);
+                for (String word : words) {
+                    termFrequency.put(word.toLowerCase(), termFrequency.getOrDefault(word, 0) + 1);
+                }
+                termFrequencyList.add(termFrequency);
             }
-            termFrequencyList.add(termFrequency);
         }
-        System.out.println("Finalizando a conta de TermFrequency");
         return termFrequencyList;
-    }
-
-    public static List<Map<String, Integer>> calculateTermFrequency(String[] documents) {
-        List<String> documentsList = Arrays.asList(documents);
-        System.out.println("Devolvendo para arraylist: " + documentsList.size());
-        return calculateTermFrequency(documentsList);
     }
 
     public static List<Map<String, AtomicLong>> calculateTermFrequencyAtomicLong(List<String> documents) {
@@ -35,7 +29,7 @@ public class TFiDF {
                 String[] words = doc.split("\\s+");
                 for (String word : words) {
                     AtomicLong atomicLong = new AtomicLong();
-                    atomicLong.addAndGet(1);
+                    atomicLong.incrementAndGet();
                     termFrequency.put(word, termFrequency.getOrDefault(word, atomicLong));
                 }
             }

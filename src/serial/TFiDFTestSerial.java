@@ -9,12 +9,13 @@ import java.util.Map;
 import utils.TFiDF;
 
 public class TFiDFTestSerial {
-    private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\dataset_1mb.txt";
+    private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\shrek-historia.txt";
 
     public static void main(String[] args) {
         try {
             Map<Integer, String> listOfLines = FileProperties.readDocuments(filePath);
             List<Map<String, Integer>> countTerm = TFiDF.calculateTermFrequency(listOfLines.values().stream().toList());
+
             Map<String, Double> frequencyTerm = TFiDF.calculateIDF(countTerm, listOfLines.size());
             List<Map<String, Double>> listTfAndDf = TFiDF.calculateTFIDF(countTerm, frequencyTerm);
             for (Map<String, Double> tfAndDf : listTfAndDf) {
