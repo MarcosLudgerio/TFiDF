@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class TFiDF {
-    public static final Logger LOGGER = Logger.getLogger(TermFrequencyTask.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TermFrequencyTask.class.getName());
 
     public static List<Map<String, Integer>> calculateTermFrequency(List<String> documents) {
         List<Map<String, Integer>> termFrequencyList = new ArrayList<>();

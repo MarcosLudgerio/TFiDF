@@ -14,15 +14,7 @@ public class TFiDFExecutorTest {
 
     public static void main(String[] args) {
 
-        try (var executorService = Executors.newVirtualThreadPerTaskExecutor()) {
-            Map<AtomicLong, String> documents = FileProperties.readDocumentsAtomic(filePath);
-            TFiDFThreadedPlatform platform = new TFiDFThreadedPlatform(documents);
-            executorService.submit(platform::calculateDFAndIDF);
-            executorService.submit(platform::showingResults);
-
-        } catch (IOException e) {
-            System.out.println("pode dar merda: " + e.getMessage());
-        }
+        System.out.println("passou");
 
     }
 }

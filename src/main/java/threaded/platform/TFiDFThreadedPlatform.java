@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Logger;
 
 public class TFiDFThreadedPlatform implements Runnable {
     private static final Lock lock = new ReentrantLock();
@@ -17,6 +18,7 @@ public class TFiDFThreadedPlatform implements Runnable {
     private static final AtomicReference<List<Map<String, AtomicLong>>> termFrequency = new AtomicReference<>(new ArrayList<>());
     private static final AtomicReference<Map<String, Double>> idfResult = new AtomicReference<>(new HashMap<>());
     private static List<Map<String, Double>> resultado = new ArrayList<>();
+    private static final Logger LOGGER = Logger.getLogger(TFiDFThreadedPlatform.class.getName());
 
     public TFiDFThreadedPlatform(Map<AtomicLong, String> document) {
         TFiDFThreadedPlatform.documents = document.values().stream().toList();
@@ -38,14 +40,14 @@ public class TFiDFThreadedPlatform implements Runnable {
 
     public void calculateDFAndIDF() {
         lock.lock();
-        System.out.println("Calculando document frequency");
+        LOGGER.info("Calculate DF");
         List<Map<String, AtomicLong>> documentFrequency = this.calculateTermFrequency();
-        System.out.println("Calculando doubleMap");
+        LOGGER.info("Calculando IDF");
         Map<String, Double> doubleMap = this.calculateDF(documentFrequency.size());
         lock.unlock();
-        System.out.println("clculando resultado");
+        LOGGER.info("Calculate TFiDF");
         resultado = TFiDF.calculateTFIDFAtomic(documentFrequency, doubleMap);
-        System.out.println(resultado.size());
+
     }
 
     public void showingResults() {

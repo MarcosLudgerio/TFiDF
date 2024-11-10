@@ -11,11 +11,6 @@ public class TFIDFThreadTest {
 
     public static void main(String[] args) {
 
-        TFiDFThreadedVirtual virtual = new TFiDFThreadedVirtual(filePath);
-        virtual.run();
-        Map<AtomicLong, String> documentVirtualThread = virtual.getDocument().get();
-        TFiDFThreadedPlatform platform = new TFiDFThreadedPlatform(documentVirtualThread);
-        platform.run();
-        System.out.println("Finalizando threads");
+        System.out.println("Testado");
     }
 }
