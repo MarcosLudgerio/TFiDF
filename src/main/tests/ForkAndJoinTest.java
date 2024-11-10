@@ -3,18 +3,27 @@ package main.tests;
 import forkandjoin.InverseDocumentFrequencyTask;
 import forkandjoin.TFiDFTask;
 import forkandjoin.TermFrequencyTask;
+import org.openjdk.jmh.annotations.*;
 import utils.FileProperties;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@State(Scope.Thread)
+@Warmup(iterations = 2, time = 1, timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(iterations = 3, time = 1, timeUnit = TimeUnit.MILLISECONDS)
+@Fork(1)
 public class ForkAndJoinTest {
-    private static final String filePath = "D:\\repositorios-git\\TFiDF-kotlin\\TFiDF vk\\dataset\\dataset_test.txt";
+    private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\dataset1gb.txt";
     public static final Logger LOGGER = Logger.getLogger(ForkAndJoinTest.class.getName());
 
+    @Benchmark
     public void TestingForkAndJoinFramework() {
         Map<Integer, String> listOfLines = null;
         try {

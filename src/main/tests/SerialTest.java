@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SerialTest {
-    private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\dataset_100mb.txt";
+    private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\dataset_1mb.txt";
 
 
     public void testSerial() {
