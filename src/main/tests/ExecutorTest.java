@@ -1,13 +1,11 @@
 package main.tests;
 
-import org.openjdk.jmh.annotations.*;
-import threaded.platform.TFiDFThreadedPlatform;
+import threaded.platform.TFiDFThread;
 import utils.FileProperties;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 
@@ -18,7 +16,7 @@ public class ExecutorTest {
     public void TestingExecutorFramework() {
         try (var executorService = Executors.newVirtualThreadPerTaskExecutor()) {
             Map<AtomicLong, String> documents = FileProperties.readDocumentsAtomic(filePath);
-            TFiDFThreadedPlatform platform = new TFiDFThreadedPlatform(documents);
+            TFiDFThread platform = new TFiDFThread(documents);
             executorService.submit(platform::calculateDFAndIDF);
 
         } catch (IOException e) {

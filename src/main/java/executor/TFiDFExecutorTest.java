@@ -1,7 +1,8 @@
 package executor;
 
-import threaded.platform.TFiDFThreadedPlatform;
+import threaded.platform.TFiDFThread;
 import utils.FileProperties;
+import utils.TFiDF;
 
 import java.io.IOException;
 import java.util.Map;
@@ -13,8 +14,6 @@ public class TFiDFExecutorTest {
     private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\dataset_1mb.txt";
 
     public static void main(String[] args) {
-
-        System.out.println("passou");
-
+        System.out.println("Esse código aqui de baixo está no ExecutorTest file");
     }
 }

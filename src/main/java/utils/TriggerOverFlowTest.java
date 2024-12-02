@@ -12,7 +12,7 @@ public class TriggerOverFlowTest {
 
     public TriggerOverFlowTest() throws IOException {
         for (int i = 0; i < 999999; i++) {
-            image[i] = ImageIO.read(new File("C:\\Users\\marco\\Documents\\www\\repositorios-git\\python-diversos\\TFiDF\\src\\image.jpg"));
+            image[i] = ImageIO.read(new File("C:\\Users\\marco\\Desktop\\image-1 .jpg"));
         }
         System.out.println("Imagem Reads");
         for (int i = 0; i < 999999; i++) {
