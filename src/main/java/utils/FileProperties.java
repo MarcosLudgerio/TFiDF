@@ -31,7 +31,7 @@ public class FileProperties {
     }
 
     public static Map<AtomicLong, String> readDocumentsAtomic(String filePath) throws IOException {
-        System.out.println(filePath);
+
         var reader = Files.newBufferedReader(Path.of(filePath));
 
         String line;

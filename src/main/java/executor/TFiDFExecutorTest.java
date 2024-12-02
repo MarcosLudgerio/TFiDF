@@ -14,6 +14,17 @@ public class TFiDFExecutorTest {
     private static final String filePath = "D:\\repositorios-git\\projetos-diversos\\TFiDF\\datasets\\dataset_1mb.txt";
 
     public static void main(String[] args) {
-        System.out.println("Esse código aqui de baixo está no ExecutorTest file");
+
+
+        try (var executorService = Executors.newVirtualThreadPerTaskExecutor()) {
+
+
+            Map<AtomicLong, String> documents = FileProperties.readDocumentsAtomic(filePath);
+            TFiDFThread platform = new TFiDFThread(documents);
+            executorService.submit(platform::calculateDFAndIDF);
+
+        } catch (IOException e) {
+            System.out.println("pode dar merda: " + e.getMessage());
+        }
     }
 }
